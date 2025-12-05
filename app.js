@@ -9,11 +9,15 @@ import timerRoutes from "./Routes/timerRoutes.js";
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:5173' }));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  next();
-});
+app.use(
+  cors({
+    origin: [
+      // process.env.CLIENT_URL,
+      "kanbanfrontend.vercel.app",
+    ].filter(Boolean),
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
