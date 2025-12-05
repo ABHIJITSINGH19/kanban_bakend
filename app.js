@@ -6,7 +6,6 @@ import authRoutes from "./Routes/authRoutes.js";
 import userRoutes from "./Routes/userRoutes.js";
 import taskRoutes from "./Routes/taskRoutes.js";
 import timerRoutes from "./Routes/timerRoutes.js";
-
 const app = express();
 
 const envClientUrls = process.env.CLIENT_URLS
