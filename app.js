@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: [
       process.env.CLIENT_URL,
-      "https://my-repo-opal-three.vercel.app",
+      "kanbanfrontend.vercel.app",
     ].filter(Boolean),
     credentials: true,
   })
