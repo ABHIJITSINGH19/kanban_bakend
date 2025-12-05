@@ -312,7 +312,6 @@ export const resetPassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   const jwtToken = signToken(user._id);
-
   res.status(200).json({
     status: "success",
     message: "Password reset successfully!",
