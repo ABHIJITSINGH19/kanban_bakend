@@ -65,9 +65,16 @@ export const register = catchAsync(async (req, res, next) => {
   const verificationToken = user.createEmailVerificationToken();
   await user.save({ validateBeforeSave: false });
 
-  const verificationURL = `${req.protocol}://${req.get(
-    "host"
-  )}/api/auth/verify-email/${verificationToken}`;
+  if (!process.env.CLIENT_URL) {
+    return next(
+      new AppError(
+        "CLIENT_URL is not configured. Please set CLIENT_URL in your environment variables.",
+        500
+      )
+    );
+  }
+
+  const verificationURL = `${process.env.CLIENT_URL}/verify-email/${verificationToken}`;
 
   try {
     await sendEmail({
