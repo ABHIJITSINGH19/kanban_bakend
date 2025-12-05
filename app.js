@@ -9,7 +9,6 @@ import timerRoutes from "./Routes/timerRoutes.js";
 
 const app = express();
 
-
 const envClientUrls = process.env.CLIENT_URLS
   ? process.env.CLIENT_URLS.split(",").map((s) => s.trim())
   : [];
@@ -23,7 +22,6 @@ const whitelist = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      
       if (!origin) return callback(null, true);
       if (whitelist.indexOf(origin) !== -1) {
         return callback(null, true);
