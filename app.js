@@ -14,28 +14,30 @@ app.use(
     origin: [
       process.env.CLIENT_URL,
       "https://my-repo-opal-three.vercel.app",
-      "https://my-repo-a9lvccc3f-abhijits-projects-9e3a4963.vercel.app",
-    ].filter(Boolean), 
-    credentials: true, 
+    ].filter(Boolean),
+    credentials: true,
   })
 );
 app.use(express.json());
+
+// app.get("/", (req, res) => {
+//   res.json({
+//     status: "success",
+//     message: "HRM Backend API is running",
+//     version: "1.0.0",
+//     endpoints: {
+//       auth: "/api/auth",
+//       users: "/api/users",
+//       tasks: "/api/tasks",
+//       timer: "/api",
+//     },
+//   });
+// });
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api", timerRoutes);
-
-// app.get("/", (req, res) => {
-//   res.send(`
-//     <html>
-//       <head><title>Task Management</title></head>
-//       <body>
-//         <h1>Welcome to Task Management</h1>
-//       </body>
-//     </html>
-//   `);
-// });
 
 app.use(/.*/, (req, res, next) => {
   const err = new AppError(
